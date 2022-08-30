@@ -1,6 +1,6 @@
 defmodule MicrosoftGraph.Client do
   @moduledoc """
-  Client for the Microsoft Graph API.
+  Client for the [Microsoft Graph API](https://docs.microsoft.com/en-us/graph/use-the-api).
 
   ## Usage
 
@@ -16,14 +16,10 @@ defmodule MicrosoftGraph.Client do
   """
 
   @doc """
-  Create a new Microsoft Graph API client.
+  Creates a new Microsoft Graph API client with an existing Ueberauth config.
 
-  ## Examples:
+  ## Example:
 
-      iex> Microsoft.client("client_id", "client_secret", "tenant_id")
-      %OAuth2.Client{}
-
-      # Use an existing Ueberauth config
       iex> Microsoft.client(Application.get_env(:ueberauth, Ueberauth.Strategy.Microsoft.OAuth))
       %OAuth2.Client{}
 
@@ -36,6 +32,15 @@ defmodule MicrosoftGraph.Client do
     )
   end
 
+  @doc """
+  Creates a new Microsoft Graph API client.
+
+  ## Examples:
+
+      iex> Microsoft.client("client_id", "client_secret", "tenant_id")
+      %OAuth2.Client{}
+
+  """
   def client(client_id, client_secret, tenant_id) do
     OAuth2.Client.new(
       strategy: OAuth2.Strategy.ClientCredentials,
@@ -55,12 +60,21 @@ defmodule MicrosoftGraph.Client do
   end
 
   @doc """
-  Default scope string helper
+  Default scope string helper.
+
+  https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#the-default-scope
   """
   def default_scope(), do: "https://graph.microsoft.com/.default"
 
   @doc """
-  Gets a token and puts the correct json header for the API
+  Gets a token and puts the correct json header for the API.
+
+  ## Example
+
+      # Returns a client with a valid access token
+      iex> MicrosoftGraph.Client.get_token!(%OAuth2.Client{})
+      %OAuth2.Client{}
+
   """
   def get_token!(client, params \\ [], headers \\ [], opts \\ []) do
     OAuth2.Client.get_token!(client, params, headers, opts)

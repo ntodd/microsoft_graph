@@ -1,5 +1,7 @@
 defmodule MicrosoftGraph.Users.User do
   @moduledoc """
+  Users API.
+
   https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0
   """
   alias MicrosoftGraph.Request
@@ -30,6 +32,13 @@ defmodule MicrosoftGraph.Users.User do
   ## Examples
 
       iex> MicrosoftGraph.Users.User.get_user(client, "1234...")
+      {:ok, response}
+
+      # With query params
+      iex> MicrosoftGraph.Users.User.get_user(client, "1234...", params: %{
+        "$select" => "displayName,id",
+        "$filter" => "identities/any(c:c/issuerAssignedId eq 'j.smith@yahoo.com' and c/issuer eq 'My B2C tenant'"
+      })
       {:ok, response}
 
   """
