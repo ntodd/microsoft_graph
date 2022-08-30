@@ -46,4 +46,28 @@ defmodule MicrosoftGraph.Users.User do
     Request.get("/v1.0/users/#{URI.encode(id)}", options)
     |> Request.execute(client)
   end
+
+  @doc """
+  Create a user.
+
+  https://docs.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0&tabs=http
+
+  ## Example:
+
+      iex> MicrosoftGraph.Users.User.create_user(client, params: %{
+            "accountEnabled" => true,
+            "displayName" => "Adele Vance",
+            "mailNickname" => "AdeleV",
+            "userPrincipalName" => "AdeleV@contoso.onmicrosoft.com",
+            "passwordProfile" => %{
+              "forceChangePasswordNextSignIn" => true,
+              "password" => "password1234"
+            }
+          })
+
+  """
+  def create_user(client, options \\ []) do
+    Request.post("/v1.0/users", options)
+    |> Request.execute(client)
+  end
 end
