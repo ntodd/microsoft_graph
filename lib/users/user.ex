@@ -1,9 +1,8 @@
 defmodule MicrosoftGraph.Users.User do
-  alias MicrosoftGraph.Request
-
   @moduledoc """
   https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0
   """
+  alias MicrosoftGraph.Request
 
   @doc """
   https://docs.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0&tabs=http

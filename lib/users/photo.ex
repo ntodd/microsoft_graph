@@ -1,9 +1,8 @@
 defmodule MicrosoftGraph.Users.Photo do
-  alias MicrosoftGraph.Request
-
   @moduledoc """
   https://docs.microsoft.com/en-us/graph/api/resources/profilephoto?view=graph-rest-1.0
   """
+  alias MicrosoftGraph.Request
 
   @doc """
   Returns the actual user photo binary data.

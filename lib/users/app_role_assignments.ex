@@ -1,4 +1,11 @@
 defmodule MicrosoftGraph.Users.AppRoleAssignments do
+  @moduledoc """
+  An app role assignment is a relationship between the assigned principal (a
+  user, a group, or a service principal), a resource application (the app's
+  service principal) and an app role defined on the resource application.
+
+  https://docs.microsoft.com/en-us/graph/api/resources/approleassignment?view=graph-rest-1.0
+  """
   alias MicrosoftGraph.Request
 
   @doc """

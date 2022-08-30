@@ -1,9 +1,8 @@
 defmodule MicrosoftGraph.Users.Calendar do
-  alias MicrosoftGraph.Request
-
   @moduledoc """
   https://docs.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0
   """
+  alias MicrosoftGraph.Request
 
   @doc """
   https://docs.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0&tabs=http
