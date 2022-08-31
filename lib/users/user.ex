@@ -15,7 +15,9 @@ defmodule MicrosoftGraph.Users.User do
       {:ok, response}
 
       # Filter results
-      iex> MicrosoftGraph.Users.User.list_users(client, params: %{"$filter" => "userType eq 'Member' and accountEnabled eq true"})
+      iex> MicrosoftGraph.Users.User.list_users(client,
+            params: %{"$filter" => "userType eq 'Member' and accountEnabled eq true"}
+          )
       {:ok, response}
 
   """
@@ -35,10 +37,13 @@ defmodule MicrosoftGraph.Users.User do
       {:ok, response}
 
       # With query params
-      iex> MicrosoftGraph.Users.User.get_user(client, "1234...", params: %{
-        "$select" => "displayName,id",
-        "$filter" => "identities/any(c:c/issuerAssignedId eq 'j.smith@yahoo.com' and c/issuer eq 'My B2C tenant'"
-      })
+      iex> MicrosoftGraph.Users.User.get_user(client, "1234...",
+            params: %{
+              "$select" => "displayName,id",
+              "$filter" =>
+                "identities/any(c:c/issuerAssignedId eq 'j.smith@yahoo.com' and c/issuer eq 'My B2C tenant'"
+            }
+          )
       {:ok, response}
 
   """
@@ -54,16 +59,19 @@ defmodule MicrosoftGraph.Users.User do
 
   ## Example:
 
-      iex> MicrosoftGraph.Users.User.create_user(client, params: %{
-            "accountEnabled" => true,
-            "displayName" => "Adele Vance",
-            "mailNickname" => "AdeleV",
-            "userPrincipalName" => "AdeleV@contoso.onmicrosoft.com",
-            "passwordProfile" => %{
-              "forceChangePasswordNextSignIn" => true,
-              "password" => "password1234"
+      iex> MicrosoftGraph.Users.User.create_user(client,
+            params: %{
+              "accountEnabled" => true,
+              "displayName" => "Adele Vance",
+              "mailNickname" => "AdeleV",
+              "userPrincipalName" => "AdeleV@contoso.onmicrosoft.com",
+              "passwordProfile" => %{
+                "forceChangePasswordNextSignIn" => true,
+                "password" => "password1234"
+              }
             }
-          })
+          )
+      {:ok, response}
 
   """
   def create_user(client, options \\ []) do
