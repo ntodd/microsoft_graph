@@ -16,12 +16,13 @@ jobs:
       matrix:
         include:
           - pair:
-              elixir: "1.10.4"
-              otp: "21.3.8.19"
-          - pair:
               elixir: "1.13.4"
-              otp: "25.0"
+              otp: "25.0.4"
             lint: lint
+          - pair:
+              elixir: "v1.14.0-rc.1"
+              otp: "25.0.4"
+
     steps:
       - uses: actions/checkout@v3
 
@@ -29,6 +30,7 @@ jobs:
         with:
           otp-version: ${{matrix.pair.otp}}
           elixir-version: ${{matrix.pair.elixir}}
+          version-type: strict
 
       - uses: actions/cache@v3
         with:
