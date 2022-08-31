@@ -4,7 +4,7 @@ defmodule MicrosoftGraph.Client do
 
   ## Usage
 
-      client = MicrosoftGraph.Client.client("client_id", "client_secret", "tenant_id")
+      client = Microsoft.Client.create("client_id", "client_secret", "tenant_id")
       |> MicrosoftGraph.Client.get_token!(scope: "https://graph.microsoft.com/.default")
 
       MicrosoftGraph.Users.User.list_users(client)
@@ -16,16 +16,17 @@ defmodule MicrosoftGraph.Client do
   """
 
   @doc """
-  Creates a new Microsoft Graph API client with an existing Ueberauth config.
+  Creates a new `%OAuth2.Client{}` struct configured for the Microsoft Graph API
+  with an Ueberauth config.
 
   ## Example:
 
-      iex> Microsoft.client(Application.get_env(:ueberauth, Ueberauth.Strategy.Microsoft.OAuth))
+      iex> Microsoft.Client.create(Application.get_env(:ueberauth, Ueberauth.Strategy.Microsoft.OAuth))
       %OAuth2.Client{}
 
   """
-  def client(config) when is_list(config) do
-    client(
+  def create(config) when is_list(config) do
+    create(
       Keyword.get(config, :client_id),
       Keyword.get(config, :client_secret),
       Keyword.get(config, :tenant_id)
@@ -33,15 +34,15 @@ defmodule MicrosoftGraph.Client do
   end
 
   @doc """
-  Creates a new Microsoft Graph API client.
-
+  Creates a new `%OAuth2.Client{}` struct configured for the Microsoft Graph API.
   ## Examples:
 
-      iex> Microsoft.client("client_id", "client_secret", "tenant_id")
+      iex> Microsoft.Client.create("client_id", "client_secret", "tenant_id")
       %OAuth2.Client{}
 
   """
-  def client(client_id, client_secret, tenant_id) do
+  def create(client_id, client_secret, tenant_id)
+      when is_binary(client_id) and is_binary(client_secret) and is_binary(tenant_id) do
     OAuth2.Client.new(
       strategy: OAuth2.Strategy.ClientCredentials,
       site: "https://graph.microsoft.com",
