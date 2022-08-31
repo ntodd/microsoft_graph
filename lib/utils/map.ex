@@ -31,18 +31,47 @@ defmodule MicrosoftGraph.Utils.Map do
 
   @doc """
   Recursively convert any string keys in map to atom keys.
+
+  ## Examples:
+
+      iex> MicrosoftGraph.Utils.Map.keys_to_atoms(%{a: 1, b: 2})
+      %{a: 1, b: 2}
+
+      iex> MicrosoftGraph.Utils.Map.keys_to_atoms(%{"a" => 1, "b" => 2})
+      %{a: 1, b: 2}
+
+      iex> MicrosoftGraph.Utils.Map.keys_to_atoms(%{"a" => 1, b: 2})
+      %{a: 1, b: 2}
+
+      iex> MicrosoftGraph.Utils.Map.keys_to_atoms(%{"a" => 1, b: %{"d" => 4, c: 3}})
+      %{a: 1, b: %{c: 3, d: 4}}
+
   """
   def keys_to_atoms(string_key_map) when is_map(string_key_map) do
     for {key, val} <- string_key_map,
         into: %{},
-        do:
-          {if(is_binary(key), do: String.to_existing_atom(key), else: key), keys_to_strings(val)}
+        do: {if(is_binary(key), do: String.to_existing_atom(key), else: key), keys_to_atoms(val)}
   end
 
   def keys_to_atoms(value), do: value
 
   @doc """
   Recursively convert any atom keys in map to string keys.
+
+  ## Examples:
+
+    iex> MicrosoftGraph.Utils.Map.keys_to_strings(%{"a" => 1, "b" => 2})
+    %{"a" => 1, "b" => 2}
+
+    iex> MicrosoftGraph.Utils.Map.keys_to_strings(%{a: 1, b: 2})
+    %{"a" => 1, "b" => 2}
+
+    iex> MicrosoftGraph.Utils.Map.keys_to_strings(%{"a" => 1, b: 2})
+    %{"a" => 1, "b" => 2}
+
+    iex> MicrosoftGraph.Utils.Map.keys_to_strings(%{"a" => 1, b: %{"d" => 4, c: 3}})
+    %{"a" => 1, "b" => %{"c" => 3, "d" => 4}}
+
   """
   def keys_to_strings(atom_key_map) when is_map(atom_key_map) do
     for {key, val} <- atom_key_map,
