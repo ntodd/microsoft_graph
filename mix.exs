@@ -34,7 +34,7 @@ defmodule MicrosoftGraph.MixProject do
   defp package do
     [
       maintainers: ["Nate Todd"],
-      licenses: ["MIT"],
+      licenses: ["Apache-2.0"],
       links: %{"GitHub" => "https://github.com/ntodd/microsoft_graph"}
     ]
   end
