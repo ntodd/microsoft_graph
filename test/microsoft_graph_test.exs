@@ -1,5 +1,5 @@
 defmodule MicrosoftGraphTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest MicrosoftGraph
 
   describe "create" do
