@@ -18,6 +18,9 @@ defmodule MicrosoftGraph.Utils.Map do
       iex> MicrosoftGraph.Utils.Map.deep_merge(%{a: 1}, %{a: %{b: 2}})
       %{a: %{b:  2}}
 
+      iex> MicrosoftGraph.Utils.Map.deep_merge(%{a: 1}, %{a: %{b: ~N[2022-09-07 16:53:35.844928]}})
+      %{a: %{b: ~N[2022-09-07 16:53:35.844928]}}
+
       iex> MicrosoftGraph.Utils.Map.deep_merge(%{a: %{b: 1}}, %{a: 2})
       %{a: 2}
 
