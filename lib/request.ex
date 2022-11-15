@@ -52,6 +52,18 @@ defmodule MicrosoftGraph.Request do
   end
 
   @doc """
+  Create a PATCH request.
+
+  See `new/1` for options.
+  """
+  def patch(path, options \\ []) do
+    options
+    |> put_path_in_options(path)
+    |> put_method_in_options(:patch)
+    |> new()
+  end
+
+  @doc """
   Create a DELETE request.
 
   See `new/1` for options.
@@ -128,6 +140,9 @@ defmodule MicrosoftGraph.Request do
 
       :put ->
         OAuth2.Client.put(client, request.url.path, request.params, request.headers)
+
+      :patch ->
+        OAuth2.Client.patch(client, request.url.path, request.params, request.headers)
 
       :delete ->
         OAuth2.Client.delete(client, request.url.path, request.params, request.headers)

@@ -146,4 +146,27 @@ defmodule MicrosoftGraph.Users.Calendar do
     Request.delete("/v1.0/users/#{URI.encode(id)}/calendar/events/#{meeting_id}", options)
     |> Request.execute(client)
   end
+
+  @doc """
+  https://learn.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0&tabs=http
+
+  ## Examples
+
+      # Params are required for this endpoint
+      iex> MicrosoftGraph.Users.Calendar.update_meeting(client, "user_id", "meeting_id")
+      {:error, response}
+
+      iex> MicrosoftGraph.Users.Calendar.update_meeting(client, "user_id", , "meeting_id", params: %{
+        "body": %{
+          "contentType": "HTML",
+          "content": "Does noon work for you??"
+        }
+      })
+      {:ok, response}
+
+  """
+  def update_meeting(client, id, meeting_id, options \\ []) do
+    Request.patch("/v1.0/users/#{URI.encode(id)}/calendar/events/#{meeting_id}", options)
+    |> Request.execute(client)
+  end
 end
