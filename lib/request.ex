@@ -52,6 +52,18 @@ defmodule MicrosoftGraph.Request do
   end
 
   @doc """
+  Create a DELETE request.
+
+  See `new/1` for options.
+  """
+  def delete(path, options \\ []) do
+    options
+    |> put_path_in_options(path)
+    |> put_method_in_options(:delete)
+    |> new()
+  end
+
+  @doc """
   Create a request. You generally should use the other request constructors like `get/2` and `post/2`.
 
   Basic request options:
@@ -116,6 +128,9 @@ defmodule MicrosoftGraph.Request do
 
       :put ->
         OAuth2.Client.put(client, request.url.path, request.params, request.headers)
+
+      :delete ->
+        OAuth2.Client.delete(client, request.url.path, request.params, request.headers)
 
       _ ->
         {:error, :unsupported_method}
