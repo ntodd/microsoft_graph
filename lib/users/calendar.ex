@@ -5,6 +5,8 @@ defmodule MicrosoftGraph.Users.Calendar do
   alias MicrosoftGraph.Request
 
   @doc """
+  Get the free/busy availability information for a collection of users, distributions lists, or resources (rooms or equipment) for a specified time period.
+
   https://docs.microsoft.com/en-us/graph/api/calendar-getschedule?view=graph-rest-1.0&tabs=http
 
   ## Examples
@@ -34,6 +36,8 @@ defmodule MicrosoftGraph.Users.Calendar do
   end
 
   @doc """
+  Suggest meeting times and locations based on organizer and attendee availability, and time or location constraints specified as parameters.
+
   https://learn.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0&tabs=http
 
   ## Examples
@@ -87,6 +91,8 @@ defmodule MicrosoftGraph.Users.Calendar do
   end
 
   @doc """
+  Create an event in the user's default calendar or specified calendar.
+
   https://learn.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0&tabs=http
 
   ## Examples
@@ -132,7 +138,9 @@ defmodule MicrosoftGraph.Users.Calendar do
   end
 
   @doc """
-  # https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0&tabs=http
+  Removes the specified event from the containing calendar.
+
+  https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0&tabs=http
 
   ## Examples
 
@@ -148,6 +156,8 @@ defmodule MicrosoftGraph.Users.Calendar do
   end
 
   @doc """
+  Update the properties of the event object.
+
   https://learn.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0&tabs=http
 
   ## Examples
