@@ -12,14 +12,6 @@ defmodule MicrosoftGraphTest do
                params: %{},
                redirect_uri: "",
                ref: nil,
-               request_opts: [
-                 {:ssl_options,
-                  [
-                    versions: [:"tlsv1.2"],
-                    verify: :verify_peer,
-                    cacertfile: :certifi.cacertfile()
-                  ]}
-               ],
                serializers: %{"application/json" => Jason},
                site: "https://graph.microsoft.com",
                strategy: OAuth2.Strategy.ClientCredentials,
@@ -44,14 +36,6 @@ defmodule MicrosoftGraphTest do
                params: %{},
                redirect_uri: "",
                ref: nil,
-               request_opts: [
-                 {:ssl_options,
-                  [
-                    versions: [:"tlsv1.2"],
-                    verify: :verify_peer,
-                    cacertfile: :certifi.cacertfile()
-                  ]}
-               ],
                serializers: %{"application/json" => Jason},
                site: "https://graph.microsoft.com",
                strategy: OAuth2.Strategy.ClientCredentials,

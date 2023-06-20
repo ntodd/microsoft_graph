@@ -48,14 +48,7 @@ defmodule MicrosoftGraph.Client do
       site: "https://graph.microsoft.com",
       client_id: client_id,
       client_secret: client_secret,
-      token_url: "https://login.microsoftonline.com/#{tenant_id}/oauth2/v2.0/token",
-      request_opts: [
-        ssl_options: [
-          versions: [:"tlsv1.2"],
-          verify: :verify_peer,
-          cacertfile: :certifi.cacertfile()
-        ]
-      ]
+      token_url: "https://login.microsoftonline.com/#{tenant_id}/oauth2/v2.0/token"
     )
     |> OAuth2.Client.put_serializer("application/json", Jason)
   end
